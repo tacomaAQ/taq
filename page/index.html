@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Center for Urban Waters AQI</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../leaflet/leaflet.css" />
+    <link rel="stylesheet" href="../src/L.Control.Sidebar.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css" /><![endif]-->
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body, #map {
+            height: 100%;
+        }
+
+        .lorem {
+            font-style: italic;
+            color: #ZZZ;
+        }
+
+        body > #sidebar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h1>Center for Urban Waters AQI</h1>
+
+        <p>This website was created by a team of students from the University of Washington Tacoma for the Center for Urban Waters. The goal of this project was to make air quality data accessible to the public in Tacoma so that members of the community can better understand their exposure to pollution and harmful particles. Air quality can vary greatly across a city and especially in a city with such a diverse landscape as Tacoma, so we have 12 sensors placed around the city that you can view data for.
+
+Each pin will show you both the current air quality index (AQI) for that location as well as the amount of particulate matter (PM) detected in that area. The AQI will give you an idea of how much pollution is in the air while the PM value will tell you about larger particles like dust and smoke in the air.
+
+To begin, click on a pin to see the most recent* air quality data from the sensor in that location.
+
+*All data shown is current within an hour.</p>
+
+        <p><b>Click on the marker to show the sidebar again when you've closed it.</b></p>
+
+        <p>Below are all the areas that have air quality sensors</p>
+
+        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2217">Center For Urban Waters</a></p>
+
+        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2189">Crescent Heights Elementary School</a></p>
+
+        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2190">Stafford Elementary School</a></p>
+
+        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2200">Foss High School</a></p>
+
+        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2201">Roosevelt Elementary School</a></p>
+
+        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2217">SAMI ECL High Schools</a></p>
+
+        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2203">Glaudrone Middle School</a></p>
+
+        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2204">Larchmont Elementary School</a></p>
+
+        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2205">PSCAA Alexander Avenue</a></p>
+
+        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2206">Mt. Tahoma High School</a></p>
+
+        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2215">UWT/School of the Arts</a></p>
+
+        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2216">Jennie Reed Elementary School</a></p>
+
+
+
+    </div>
+
+    <div id="map"></div>
+
+    <a><img style="position: fixed; top: 0; right: 0; border: 0;" src="../pic/info.png" alt="Click on a pin for more info!"></a>
+
+    <script src="../leaflet/leaflet.js"></script>
+    <script src="../src/L.Control.Sidebar.js"></script> 
+    <script>
+        var map = L.map('map');
+        map.setView([47.2594, -122.43459], 12);
+
+        L.tileLayer('https://api.maptiler.com/maps/basic/{z}/{x}/{y}.png?key=GkcJFgiMIIDzlUY5Ilww', {attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+        }).addTo(map);
+
+
+        var sidebar = L.control.sidebar('sidebar', {
+            closeButton: true,
+            position: 'left'
+        });
+        map.addControl(sidebar);
+
+        /*
+        setTimeout(function () {
+            sidebar.show();
+        }, 500);
+        */
+        /*var marker = L.marker([47.2594, -122.43459]).addTo(map).on('click', function () { //CUW
+            sidebar.toggle();
+
+        });
+        marker.bindPopup("Hello! I am a popup!");*/
+
+        var AQI = 1;
+
+        var marker = L.marker([47.2594, -122.43459]).addTo(map);
+        marker.bindPopup("Center for Urban Waters Current AQI: " + AQI);
+        marker.on('click', function () {//CUW
+            sidebar.show();
+        });
+        
+        
+
+        var marker = L.marker([47.2947852,-122.400525]).addTo(map);
+        marker.bindPopup("Crescent Heights Elementary School Current AQI: " + AQI);
+        marker.on('click', function () {//Crescent Heights Elementary School
+            sidebar.show();
+        });
+        
+
+        var marker = L.marker([47.1745707,-122.4584701]).addTo(map);
+        marker.bindPopup("Stafford Elementary School Current AQI: " + AQI);
+        marker.on('click', function () {//Stafford Elementary School
+            sidebar.show();
+        });
+
+        var marker = L.marker([47.2395702,-122.4985016]).addTo(map);
+        marker.bindPopup("Foss High School Current AQI: " + AQI);
+        marker.on('click', function () {//Foss High School
+            sidebar.show();
+        });
+
+        var marker = L.marker([47.2281436,-122.3990932]).addTo(map);
+        marker.bindPopup("Roosevelt Elementary School Current AQI: " + AQI);
+        marker.on('click', function () {//Roosevelt Elementary School
+            sidebar.show();
+        });
+
+        var marker = L.marker([47.3031823,-122.528052]).addTo(map);
+        marker.bindPopup("SAMI ECL High School Current AQI: " + AQI);
+        marker.on('click', function () {//SAMI ECL High School
+            sidebar.show();
+        });
+
+        var marker = L.marker([47.2119195,-122.4618277]).addTo(map);
+        marker.bindPopup("Glaudrone Middle School Current AQI: " + AQI);
+        marker.on('click', function () {//Glaudrone Middle School
+            sidebar.show();
+        });
+
+        var marker = L.marker([47.1782137,-122.4305272]).addTo(map);
+        marker.bindPopup("Larchmont Elementary School Current AQI: " + AQI);
+        marker.on('click', function () {//Larchmont Elementary School
+            sidebar.show();
+        });
+
+        var marker = L.marker([47.6119653,-122.34192]).addTo(map);
+        marker.bindPopup("PSCAA Alexander Avenue Current AQI: " + AQI);
+        marker.on('click', function () {//PSCAA Alexander Avenue
+            sidebar.show();
+        });
+
+        var marker = L.marker([47.1893447,-122.5048179]).addTo(map);
+        marker.bindPopup("Mt. Tahoma High School Current AQI: " + AQI);
+        marker.on('click', function () {//Mt. Tahoma High School
+            sidebar.show();
+        });
+
+        var marker = L.marker([47.243223,-122.4368666]).addTo(map)
+        marker.bindPopup("UWT/School of the Arts Current AQI: " + AQI);
+        marker.on('click', function () {//UWT/School of the Arts
+            sidebar.show();
+        });
+
+        var marker = L.marker([47.2255609,-122.4633906]).addTo(map);
+        marker.bindPopup("Jennie Reed Elementary School Current AQI: " + AQI);
+        marker.on('click', function () {//Jennie Reed Elementary School
+            sidebar.show();
+        });
+
+        //marker.bindPopup("Hello! I am a popup!");
+
+
+        map.on('click', function () {
+            sidebar.hide();
+        })
+
+        sidebar.on('show', function () {
+            console.log('Sidebar will be visible.');
+        });
+
+        sidebar.on('shown', function () {
+            console.log('Sidebar is visible.');
+        });
+
+        sidebar.on('hide', function () {
+            console.log('Sidebar will be hidden.');
+        });
+
+        sidebar.on('hidden', function () {
+            console.log('Sidebar is hidden.');
+        });
+
+        L.DomEvent.on(sidebar.getCloseButton(), 'click', function () {
+            console.log('Close button clicked.');
+        });
+
+    </script>
+</body>
+</html>
