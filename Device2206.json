@@ -1,1 +1,1 @@
-[]
+[{"deploymentName":"Tacoma","deviceFriendlyName":"Mt. Tahoma High School","msrDeviceNbr":"2206","readingDateTimeUTC":"2022-05-06 11:28:07","readingDateTimeLocal":"2022-05-06 04:28:07","latitude":47.18888889,"longitude":-122.5041667,"cellTowerAddress":"","tempC":6.9771575927734375,"humidity":85.711669921875,"pressure":100081.328125,"pM25":805.0166625976562,"pM10":805.0166625976562,"pM1":761.2724609375,"vBattery":4.142656326293945,"cellSignal":-103,"fwVersion":"","aqi":806,"aqiLabel":"Hazardous","calibratedPM25":0,"calibrationVersion":""}]
