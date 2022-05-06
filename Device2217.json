@@ -1,1 +1,1 @@
-[]
+[{"deploymentName":"Tacoma","deviceFriendlyName":"Center for Urban Waters","msrDeviceNbr":"2217","readingDateTimeUTC":"2022-05-06 23:14:13","readingDateTimeLocal":"2022-05-06 16:14:13","latitude":47.26,"longitude":-122.4347222,"cellTowerAddress":"","tempC":17.02545166015625,"humidity":58.819580078125,"pressure":100181.4609375,"pM25":1.2768868207931519,"pM10":1.276885986328125,"pM1":1.20750093460083,"vBattery":4.155781269073486,"cellSignal":-96,"fwVersion":"","aqi":5,"aqiLabel":"Good","calibratedPM25":0,"calibrationVersion":""}]
