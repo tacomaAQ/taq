@@ -1,1 +1,1 @@
-[]
+[{"deploymentName":"Tacoma","deviceFriendlyName":"UWT/School of the Arts","msrDeviceNbr":"2215","readingDateTimeUTC":"2022-05-09 22:06:28","readingDateTimeLocal":"2022-05-09 15:06:28","latitude":47.2442122,"longitude":-122.4384799,"cellTowerAddress":"","tempC":14.89990234375,"humidity":51.5716552734375,"pressure":101064.96875,"pM25":1.1544528007507324,"pM10":1.1544520854949951,"pM1":1.0917201042175293,"vBattery":4.166562557220459,"cellSignal":-91,"fwVersion":"","aqi":4,"aqiLabel":"Good","calibratedPM25":0,"calibrationVersion":""}]
