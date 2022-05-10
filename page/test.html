@@ -21,11 +21,11 @@
 	const minuteArray = [];
 	
 	const arrayLength = obj.length;
-
+	console.log(obj.aqi[1]);
 	for (let i = 0; i < arrayLength; i++) {
-		timeArray[i] = obj[i]; //change to obj.readingDateTimeUTC[i];
+		timeArray[i] = obj.readingDateTimeUTC[i];
 	}
-
+	console.log(arrayLength);
 	for (let j = 0; j < arrayLength; j++) {
 		tempString = timeArray[j];
 		yearArray[j] = tempString.substring(0, 4);
