@@ -156,7 +156,7 @@ To begin, click on a pin to see the most recent* air quality data from the senso
         var obj2 = JSON.parse(xhReq2.responseText);
         //test1 = [{obj}];
         //AQI = test1[0].aqi;
-        if (obj2 == "[]") {
+        if (obj2.length == 0) {
             AQI2 = "This sensor is down!";
         } else {
             AQI2 = obj2[0].aqi;
