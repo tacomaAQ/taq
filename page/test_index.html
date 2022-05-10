@@ -123,9 +123,12 @@ To begin, click on a pin to see the most recent* air quality data from the senso
         xhReq.open("GET", file, false);
         xhReq.send(null);
         var obj = JSON.parse(xhReq.responseText);
-        test1 = [{obj}];
-        //AQI = test1[0].aqi;
-        AQI = obj[0].aqi;
+                
+        if (obj.length == 0) {
+            AQI = "This sensor is down!";
+        } else {
+            AQI = obj[0].aqi;
+        }
 
 
         //AQI = jsonObject;
@@ -140,9 +143,13 @@ To begin, click on a pin to see the most recent* air quality data from the senso
         xhReq1.open("GET", "Device2189.json", false);
         xhReq1.send(null);
         var obj1 = JSON.parse(xhReq1.responseText);
-        //test1 = [{obj}];
-        //AQI = test1[0].aqi;
-        AQI1 = obj1[0].aqi;
+        
+        if (obj1.length == 0) {
+            AQI1 = "This sensor is down!";
+        } else {
+            AQI1 = obj1[0].aqi;
+        }
+        
 
         var marker = L.marker([47.2947852,-122.400525]).addTo(map);
         marker.bindPopup("Crescent Heights Elementary School Current AQI: " + AQI1);
@@ -154,26 +161,30 @@ To begin, click on a pin to see the most recent* air quality data from the senso
         xhReq2.open("GET", "Device2190.json", false);
         xhReq2.send(null);
         var obj2 = JSON.parse(xhReq2.responseText);
-        //test1 = [{obj}];
-        //AQI = test1[0].aqi;
+
         if (obj2.length == 0) {
             AQI2 = "This sensor is down!";
         } else {
             AQI2 = obj2[0].aqi;
         }
+
         var marker = L.marker([47.1745707,-122.4584701]).addTo(map);
         marker.bindPopup("Stafford Elementary School Current AQI: " + AQI2);
         marker.on('click', function () {//Stafford Elementary School
             sidebar.show();
         });
         
-        var xhReq3 = new XMLHttpRequest();
+        var xhReq3 = new XMLHttpRequest(); //Foss Highschool
         xhReq3.open("GET", "Device2200.json", false);
         xhReq3.send(null);
         var obj3 = JSON.parse(xhReq3.responseText);
-        //test1 = [{obj}];
-        //AQI = test1[0].aqi;
+
         AQI3 = obj3[0].aqi;
+        if (obj3.length == 0) {
+            AQI3 = "This sensor is down!";
+        } else {
+            AQI3 = obj3[0].aqi;
+        }
 
         
         var marker = L.marker([47.2395702,-122.4985016]).addTo(map);
@@ -182,14 +193,16 @@ To begin, click on a pin to see the most recent* air quality data from the senso
             sidebar.show();
         });
         
-        var xhReq4 = new XMLHttpRequest();
+        var xhReq4 = new XMLHttpRequest(); //Roosevelt Elementary School
         xhReq4.open("GET", "Device2201.json", false);
         xhReq4.send(null);
         var obj4 = JSON.parse(xhReq4.responseText);
-        //test1 = [{obj}];
-        //AQI = test1[0].aqi;
-        AQI4 = obj4[0].aqi;
 
+        if (obj4.length == 0) {
+            AQI4 = "This sensor is down!";
+        } else {
+            AQI4 = obj4[0].aqi;
+        }
         
         var marker = L.marker([47.2281436,-122.3990932]).addTo(map);
         marker.bindPopup("Roosevelt Elementary School Current AQI: " + AQI4);
@@ -197,13 +210,16 @@ To begin, click on a pin to see the most recent* air quality data from the senso
             sidebar.show();
         });
         
-        var xhReq5 = new XMLHttpRequest();
+        var xhReq5 = new XMLHttpRequest(); //SAMI ECL High School
         xhReq5.open("GET", "Device2217.json", false);
         xhReq5.send(null);
         var obj5 = JSON.parse(xhReq5.responseText);
-        //test1 = [{obj}];
-        //AQI = test1[0].aqi;
-        AQI5 = obj5[0].aqi;
+        
+        if (obj5.length == 0) {
+            AQI5 = "This sensor is down!";
+        } else {
+            AQI5 = obj5[0].aqi;
+        }
 
         
         var marker = L.marker([47.3031823,-122.528052]).addTo(map);
@@ -212,13 +228,16 @@ To begin, click on a pin to see the most recent* air quality data from the senso
             sidebar.show();
         });
         
-        var xhReq6 = new XMLHttpRequest();
+        var xhReq6 = new XMLHttpRequest(); //Glaudrone Middle School 
         xhReq6.open("GET", "Device2203.json", false);
         xhReq6.send(null);
         var obj6 = JSON.parse(xhReq6.responseText);
-        //test1 = [{obj}];
-        //AQI = test1[0].aqi;
-        AQI6 = obj6[0].aqi;
+        
+        if (obj6.length == 0) {
+            AQI6 = "This sensor is down!";
+        } else {
+            AQI6 = obj6[0].aqi;
+        }
 
         
         var marker = L.marker([47.2119195,-122.4618277]).addTo(map);
@@ -227,14 +246,16 @@ To begin, click on a pin to see the most recent* air quality data from the senso
             sidebar.show();
         });
         
-        var xhReq7 = new XMLHttpRequest();
+        var xhReq7 = new XMLHttpRequest(); //Larchment Elementary School
         xhReq7.open("GET", "Device2204.json", false);
         xhReq7.send(null);
         var obj7 = JSON.parse(xhReq7.responseText);
-        //test1 = [{obj}];
-        //AQI = test1[0].aqi;
-        AQI7 = obj7[0].aqi;
-
+        
+        if (obj7.length == 0) {
+            AQI7 = "This sensor is down!";
+        } else {
+            AQI7 = obj7[0].aqi;
+        }
         
         var marker = L.marker([47.1782137,-122.4305272]).addTo(map);
         marker.bindPopup("Larchmont Elementary School Current AQI: " + AQI7);
@@ -242,14 +263,16 @@ To begin, click on a pin to see the most recent* air quality data from the senso
             sidebar.show();
         });
         
-        var xhReq8 = new XMLHttpRequest();
+        var xhReq8 = new XMLHttpRequest(); //{SCAA Alexander Avenue
         xhReq8.open("GET", "Device2205.json", false);
         xhReq8.send(null);
         var obj8 = JSON.parse(xhReq8.responseText);
-        //test1 = [{obj}];
-        //AQI = test1[0].aqi;
-        AQI8 = obj8[0].aqi;
 
+        if (obj8.length == 0) {
+            AQI8 = "This sensor is down!";
+        } else {
+            AQI8 = obj8[0].aqi;
+        }
         
         var marker = L.marker([47.6119653,-122.34192]).addTo(map);
         marker.bindPopup("PSCAA Alexander Avenue Current AQI: " + AQI8);
@@ -257,13 +280,16 @@ To begin, click on a pin to see the most recent* air quality data from the senso
             sidebar.show();
         });
         
-        var xhReq9 = new XMLHttpRequest();
+        var xhReq9 = new XMLHttpRequest(); //Mt. Tahoma High School
         xhReq9.open("GET", "Device2206.json", false);
         xhReq9.send(null);
         var obj9 = JSON.parse(xhReq9.responseText);
-        //test1 = [{obj}];
-        //AQI = test1[0].aqi;
-        AQI9 = obj9[0].aqi;
+        
+        if (obj9.length == 0) {
+            AQI9 = "This sensor is down!";
+        } else {
+            AQI9 = obj9[0].aqi;
+        }
 
         
         var marker = L.marker([47.1893447,-122.5048179]).addTo(map);
@@ -272,13 +298,16 @@ To begin, click on a pin to see the most recent* air quality data from the senso
             sidebar.show();
         });
         
-        var xhReq10 = new XMLHttpRequest();
+        var xhReq10 = new XMLHttpRequest(); //UWT / School of Arts
         xhReq10.open("GET", "Device2215.json", false);
         xhReq10.send(null);
         var obj10 = JSON.parse(xhReq10.responseText);
-        //test1 = [{obj}];
-        //AQI = test1[0].aqi;
-        AQI10 = obj10[0].aqi;
+        
+        if (obj10.length == 0) {
+            AQI10 = "This sensor is down!";
+        } else {
+            AQI10 = obj10[0].aqi;
+        }
 
         
         var marker = L.marker([47.243223,-122.4368666]).addTo(map)
@@ -287,13 +316,16 @@ To begin, click on a pin to see the most recent* air quality data from the senso
             sidebar.show();
         });
         
-        var xhReq11 = new XMLHttpRequest();
+        var xhReq11 = new XMLHttpRequest(); // Jennie Reed Elementary School
         xhReq11.open("GET", "Device2216.json", false);
         xhReq11.send(null);
         var obj11 = JSON.parse(xhReq11.responseText);
-        //test1 = [{obj}];
-        //AQI = test1[0].aqi;
-        AQI11 = obj11[0].aqi;
+        
+        if (obj11.length == 0) {
+            AQI11 = "This sensor is down!";
+        } else {
+            AQI11 = obj11[0].aqi;
+        }
 
         var marker = L.marker([47.2255609,-122.4633906]).addTo(map);
         marker.bindPopup("Jennie Reed Elementary School Current AQI: " + AQI11);
