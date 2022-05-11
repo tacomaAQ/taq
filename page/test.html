@@ -21,9 +21,10 @@
 	const minuteArray = [];
 	
 	const arrayLength = obj.length;
-	console.log(obj.aqi[1]);
+	
+
 	for (let i = 0; i < arrayLength; i++) {
-		timeArray[i] = obj.readingDateTimeUTC[i];
+		timeArray[i] = obj[i].readingDateTimeUTC;
 	}
 	console.log(arrayLength);
 	for (let j = 0; j < arrayLength; j++) {
@@ -48,7 +49,7 @@
 	dataPointsArray = [];//array, 2022-05-10 17:24:13
 
 	for (k = 0; k < arrayLength; k++) {
-		dataPointsArray[k] = {x: new Date( Date.UTC(yearArray[k], monthArray[k], dayArray[k], hourArray[k], minuteArray[k]) ), y: 60};
+		dataPointsArray[k] = {x: new Date( Date.UTC(yearArray[k], monthArray[k], dayArray[k], hourArray[k], minuteArray[k]) ), y: obj[k].aqi};
 	}
 
 		/*
