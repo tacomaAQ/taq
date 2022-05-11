@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Center for Urban Waters AQI</title>
+    <title>11Center for Urban Waters AQI</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -33,6 +33,8 @@
     <div id="sidebar">
         <h1>Center for Urban Waters AQI</h1>
 
+        <p id=demo>Welcome!</p>
+
         <p>This website was created by a team of students from the University of Washington Tacoma for the Center for Urban Waters. The goal of this project was to make air quality data accessible to the public in Tacoma so that members of the community can better understand their exposure to pollution and harmful particles. Air quality can vary greatly across a city and especially in a city with such a diverse landscape as Tacoma, so we have 12 sensors placed around the city that you can view data for.
 
 Each pin will show you both the current air quality index (AQI) for that location as well as the amount of particulate matter (PM) detected in that area. The AQI will give you an idea of how much pollution is in the air while the PM value will tell you about larger particles like dust and smoke in the air.
@@ -43,33 +45,31 @@ To begin, click on a pin to see the most recent* air quality data from the senso
 
         <p><b>Click on the marker to show the sidebar again when you've closed it.</b></p>
 
-        <p>You have selected the </p>
+        <p>Below are all the areas that have air quality sensors. Click on the links to see the daily graphs!</p>
 
-        <p>Below are all the areas that have air quality sensors</p>
+        <p><a id="2217" href="https://heavenly-angel.github.io/test3/examples/2217">Center For Urban Waters</a></p>
+        
+        <p><a id="2189" href="https://heavenly-angel.github.io/test3/examples/2189">Crescent Heights Elementary School</a></p>
+        
+        <p><a id="2190" href="https://heavenly-angel.github.io/test3/examples/2190">Stafford Elementary School</a></p>
+        
+        <p><a id="2200" href="https://heavenly-angel.github.io/test3/examples/2200">Foss High School</a></p>
+        
+        <p><a id="2201" href="https://heavenly-angel.github.io/test3/examples/2201">Roosevelt Elementary School</a></p>
+        
+        <p><a id="2202" href="https://heavenly-angel.github.io/test3/examples/2202">SAMI ECL High Schools</a></p>
+       
+        <p><a id="2203" href="https://heavenly-angel.github.io/test3/examples/2203">Glaudrone Middle School</a></p>
 
-        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2217">Center For Urban Waters</a></p>
+        <p><a id="2204" href="https://heavenly-angel.github.io/test3/examples/2204">Larchmont Elementary School</a></p>
 
-        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2189">Crescent Heights Elementary School</a></p>
+        <p><a id="2205" href="https://heavenly-angel.github.io/test3/examples/2205">PSCAA Alexander Avenue</a></p>
 
-        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2190">Stafford Elementary School</a></p>
+        <p><a id="2206" href="https://heavenly-angel.github.io/test3/examples/2206">Mt. Tahoma High School</a></p>
 
-        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2200">Foss High School</a></p>
+        <p><a id="2215" href="https://heavenly-angel.github.io/test3/examples/2215">UWT/School of the Arts</a></p>
 
-        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2201">Roosevelt Elementary School</a></p>
-
-        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2217">SAMI ECL High Schools</a></p>
-
-        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2203">Glaudrone Middle School</a></p>
-
-        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2204">Larchmont Elementary School</a></p>
-
-        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2205">PSCAA Alexander Avenue</a></p>
-
-        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2206">Mt. Tahoma High School</a></p>
-
-        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2215">UWT/School of the Arts</a></p>
-
-        <p><a href="https://urban.microsoft.com/air/data/Tacoma/2216">Jennie Reed Elementary School</a></p>
+        <p><a id="2216" href="https://heavenly-angel.github.io/test3/examples/2216">Jennie Reed Elementary School</a></p>
 
 
 
@@ -81,6 +81,9 @@ To begin, click on a pin to see the most recent* air quality data from the senso
 
     <script src="../leaflet/leaflet.js"></script>
     <script src="../src/L.Control.Sidebar.js"></script> 
+    <script src="../canvas/canvasjs.min.js"></script>
+    <script src="../src/Graph.js"></script>
+
     <script>
         var map = L.map('map');
         map.setView([47.2594, -122.43459], 12);
@@ -95,90 +98,248 @@ To begin, click on a pin to see the most recent* air quality data from the senso
         });
         map.addControl(sidebar);
 
-        /*
+        
         setTimeout(function () {
             sidebar.show();
         }, 500);
-        */
+        
         /*var marker = L.marker([47.2594, -122.43459]).addTo(map).on('click', function () { //CUW
             sidebar.toggle();
 
         });
         marker.bindPopup("Hello! I am a popup!");*/
 
+
+        
         var AQI = 1;
+        //Center for Urban Waters!
+        let file = "Device2217.json"
+        var xhReq = new XMLHttpRequest();
+        xhReq.open("GET", file, false);
+        xhReq.send(null);
+        var obj = JSON.parse(xhReq.responseText);
+                
+        if (obj.length == 0) {
+            AQI = "This sensor is down!";
+            document.getElementById("2217").innerHTML = "Center for Urban Waters AQI Sensor is down!";
+        } else {
+            AQI = obj[0].aqi;
+        }
 
         var marker = L.marker([47.2594, -122.43459]).addTo(map);
         marker.bindPopup("Center for Urban Waters Current AQI: " + AQI);
         marker.on('click', function () {//CUW
             sidebar.show();
         });
+
+        //Crescent Heights Elementary School
+        var xhReq1 = new XMLHttpRequest();
+        xhReq1.open("GET", "Device2189.json", false);
+        xhReq1.send(null);
+        var obj1 = JSON.parse(xhReq1.responseText);
         
-        
+        if (obj1.length == 0) {
+            AQI1 = "This sensor is down!";
+            document.getElementById("2189").innerHTML = "Crescent Heights Elementary School AQI Sensor is down!";
+        } else {
+            AQI1 = obj1[0].aqi;
+        }
 
         var marker = L.marker([47.2947852,-122.400525]).addTo(map);
-        marker.bindPopup("Crescent Heights Elementary School Current AQI: " + AQI);
+        marker.bindPopup("Crescent Heights Elementary School Current AQI: " + AQI1);
         marker.on('click', function () {//Crescent Heights Elementary School
             sidebar.show();
         });
-        
+
+        //Stafford Elementary School
+        var xhReq2 = new XMLHttpRequest();
+        xhReq2.open("GET", "Device2190.json", false);
+        xhReq2.send(null);
+        var obj2 = JSON.parse(xhReq2.responseText);
+
+        if (obj2.length == 0) {
+            AQI2 = "This sensor is down!";
+            document.getElementById("2190").innerHTML = "Stafford Elementary School AQI Sensor is down!";
+        } else {
+            AQI2 = obj2[0].aqi;
+        }
 
         var marker = L.marker([47.1745707,-122.4584701]).addTo(map);
-        marker.bindPopup("Stafford Elementary School Current AQI: " + AQI);
+        marker.bindPopup("Stafford Elementary School Current AQI: " + AQI2);
         marker.on('click', function () {//Stafford Elementary School
             sidebar.show();
         });
 
+        //Foss Highschool
+        var xhReq3 = new XMLHttpRequest(); 
+        xhReq3.open("GET", "Device2200.json", false);
+        xhReq3.send(null);
+        var obj3 = JSON.parse(xhReq3.responseText);
+
+        AQI3 = obj3[0].aqi;
+        if (obj3.length == 0) {
+            AQI3 = "This sensor is down!";
+            document.getElementById("2200").innerHTML = "Foss Highschool AQI Sensor is down!";
+        } else {
+            AQI3 = obj3[0].aqi;
+        }
+
+        
         var marker = L.marker([47.2395702,-122.4985016]).addTo(map);
-        marker.bindPopup("Foss High School Current AQI: " + AQI);
+        marker.bindPopup("Foss High School Current AQI: " + AQI3);
         marker.on('click', function () {//Foss High School
             sidebar.show();
         });
 
+        //Roosevelt Elementary School
+        var xhReq4 = new XMLHttpRequest(); 
+        xhReq4.open("GET", "Device2201.json", false);
+        xhReq4.send(null);
+        var obj4 = JSON.parse(xhReq4.responseText);
+
+        if (obj4.length == 0) {
+            AQI4 = "This sensor is down!";
+            document.getElementById("2201").innerHTML = "Roosevelt Elementary School AQI Sensor is down!";
+        } else {
+            AQI4 = obj4[0].aqi;
+        }
+        
         var marker = L.marker([47.2281436,-122.3990932]).addTo(map);
-        marker.bindPopup("Roosevelt Elementary School Current AQI: " + AQI);
+        marker.bindPopup("Roosevelt Elementary School Current AQI: " + AQI4);
         marker.on('click', function () {//Roosevelt Elementary School
             sidebar.show();
         });
 
+        //SAMI ECL High School
+        var xhReq5 = new XMLHttpRequest(); 
+        xhReq5.open("GET", "Device2202.json", false);
+        xhReq5.send(null);
+        var obj5 = JSON.parse(xhReq5.responseText);
+        
+        if (obj5.length == 0) {
+            AQI5 = "This sensor is down!";
+            document.getElementById("2202").innerHTML = "SAMI ECL High Schools AQI Sensor is down!";
+        } else {
+            AQI5 = obj5[0].aqi;
+        }
+
+        
         var marker = L.marker([47.3031823,-122.528052]).addTo(map);
-        marker.bindPopup("SAMI ECL High School Current AQI: " + AQI);
+        marker.bindPopup("SAMI ECL High School Current AQI: " + AQI5);
         marker.on('click', function () {//SAMI ECL High School
             sidebar.show();
         });
 
+        //Glaudrone Middle School
+        var xhReq6 = new XMLHttpRequest();  
+        xhReq6.open("GET", "Device2203.json", false);
+        xhReq6.send(null);
+        var obj6 = JSON.parse(xhReq6.responseText);
+        
+        if (obj6.length == 0) {
+            AQI6 = "This sensor is down!";
+            document.getElementById("2203").innerHTML = "Glaudrone Middle School AQI Sensor is down!";
+        } else {
+            AQI6 = obj6[0].aqi;
+        }
+
         var marker = L.marker([47.2119195,-122.4618277]).addTo(map);
-        marker.bindPopup("Glaudrone Middle School Current AQI: " + AQI);
+        marker.bindPopup("Glaudrone Middle School Current AQI: " + AQI6);
         marker.on('click', function () {//Glaudrone Middle School
             sidebar.show();
         });
-
+        
+        //Larchment Elementary School
+        var xhReq7 = new XMLHttpRequest(); 
+        xhReq7.open("GET", "Device2204.json", false);
+        xhReq7.send(null);
+        var obj7 = JSON.parse(xhReq7.responseText);
+        
+        if (obj7.length == 0) {
+            AQI7 = "This sensor is down!";
+            document.getElementById("2204").innerHTML = "Larchment Elementary School AQI Sensor is down!";
+        } else {
+            AQI7 = obj7[0].aqi;
+        }
+        
         var marker = L.marker([47.1782137,-122.4305272]).addTo(map);
-        marker.bindPopup("Larchmont Elementary School Current AQI: " + AQI);
+        marker.bindPopup("Larchmont Elementary School Current AQI: " + AQI7);
         marker.on('click', function () {//Larchmont Elementary School
             sidebar.show();
         });
 
-        var marker = L.marker([47.6119653,-122.34192]).addTo(map);
-        marker.bindPopup("PSCAA Alexander Avenue Current AQI: " + AQI);
+        //PSCAA Alexander Avenue
+        var xhReq8 = new XMLHttpRequest(); 
+        xhReq8.open("GET", "Device2205.json", false);
+        xhReq8.send(null);
+        var obj8 = JSON.parse(xhReq8.responseText);
+
+        if (obj8.length == 0) {
+            AQI8 = "This sensor is down!";
+            document.getElementById("2205").innerHTML = "PSCAA Alexander Avenue AQI Sensor is down!";
+        } else {
+            AQI8 = obj8[0].aqi;
+        }
+        
+        var marker = L.marker([47.265572,-122.385049]).addTo(map);
+        marker.bindPopup("PSCAA Alexander Avenue Current AQI: " + AQI8);
         marker.on('click', function () {//PSCAA Alexander Avenue
             sidebar.show();
         });
 
+        //Mt. Tahoma High School
+        var xhReq9 = new XMLHttpRequest(); 
+        xhReq9.open("GET", "Device2206.json", false);
+        xhReq9.send(null);
+        var obj9 = JSON.parse(xhReq9.responseText);
+        
+        if (obj9.length == 0) {
+            AQI9 = "This sensor is down!";
+            document.getElementById("2206").innerHTML = "Mt. Tahoma High School AQI Sensor is down!";
+        } else {
+            AQI9 = obj9[0].aqi;
+        }
+
         var marker = L.marker([47.1893447,-122.5048179]).addTo(map);
-        marker.bindPopup("Mt. Tahoma High School Current AQI: " + AQI);
+        marker.bindPopup("Mt. Tahoma High School Current AQI: " + AQI9);
         marker.on('click', function () {//Mt. Tahoma High School
             sidebar.show();
         });
 
+        //UWT / School of Arts
+        var xhReq10 = new XMLHttpRequest(); 
+        xhReq10.open("GET", "Device2215.json", false);
+        xhReq10.send(null);
+        var obj10 = JSON.parse(xhReq10.responseText);
+        
+        if (obj10.length == 0) {
+            AQI10 = "This sensor is down!";
+            document.getElementById("2215").innerHTML = "UWT/School of Arts AQI Sensor is down!";
+        } else {
+            AQI10 = obj10[0].aqi;
+        }
+
         var marker = L.marker([47.243223,-122.4368666]).addTo(map)
-        marker.bindPopup("UWT/School of the Arts Current AQI: " + AQI);
+        marker.bindPopup("UWT/School of the Arts Current AQI: " + AQI10);
         marker.on('click', function () {//UWT/School of the Arts
             sidebar.show();
         });
 
+        // Jennie Reed Elementary School
+        var xhReq11 = new XMLHttpRequest(); 
+        xhReq11.open("GET", "Device2216.json", false);
+        xhReq11.send(null);
+        var obj11 = JSON.parse(xhReq11.responseText);
+        
+        if (obj11.length == 0) {
+            AQI11 = "This sensor is down!";
+            document.getElementById("2216").innerHTML = "Jennie Reed Elementary School AQI Sensor is down!";
+        } else {
+            AQI11 = obj11[0].aqi;
+        }
+
         var marker = L.marker([47.2255609,-122.4633906]).addTo(map);
-        marker.bindPopup("Jennie Reed Elementary School Current AQI: " + AQI);
+        marker.bindPopup("Jennie Reed Elementary School Current AQI: " + AQI11);
         marker.on('click', function () {//Jennie Reed Elementary School
             sidebar.show();
         });
@@ -211,5 +372,6 @@ To begin, click on a pin to see the most recent* air quality data from the senso
         });
 
     </script>
+    <script src="../src/TacomaGeoCode.js"></script>
 </body>
 </html>

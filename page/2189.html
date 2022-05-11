@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script src="../canvas/canvasjs.min.js"></script>
+  <script type="text/javascript">
+  	
+  	var xhReq = new XMLHttpRequest();
+        xhReq.open("GET", "Device2189.json", false); 
+        xhReq.send(null);
+        var obj = JSON.parse(xhReq.responseText);
+                
+        //make a copy of obj so that I can check if its empty or not in order to continue the logic
+	
+	//const obj = ["2022-05-10 17:24:13", "2022-05-10 17:04:01", "2022-05-10 16:43:49", "2022-05-10 16:23:37", "2022-05-10 16:03:25"];
+	//it is in descending order
+	const timeArray = [];
+	const yearArray = [];
+	const monthArray = [];
+	const dayArray = [];
+	const hourArray = [];
+	const minuteArray = [];
+	
+	const arrayLength = obj.length;
+	
+
+	for (let i = 0; i < arrayLength; i++) {
+		timeArray[i] = obj[i].readingDateTimeLocal;
+	}
+	console.log(arrayLength);
+	for (let j = 0; j < arrayLength; j++) {
+		tempString = timeArray[j];
+		yearArray[j] = tempString.substring(0, 4);
+		monthArray[j] = (String) (parseInt(tempString.substring(5, 7)) - 1);
+		dayArray[j] = tempString.substring(8, 10);
+		hourArray[j] = tempString.substring(11, 13);
+		minuteArray[j] = tempString.substring(14, 16);
+	}
+
+	dataPointsArray = [];//array, 2022-05-10 17:24:13
+
+	for (k = 0; k < arrayLength; k++) {
+		dataPointsArray[k] = {x: new Date( yearArray[k], monthArray[k], dayArray[k], hourArray[k], minuteArray[k] ), y: obj[k].aqi};
+	}
+
+	var chartTitle;
+	if (arrayLength == 0) {
+		chartTitle = "Crescent Heights Elementary School AQI Sensor is down! Please come back later.";
+	} else {
+		chartTitle = "Crescent Heights Elementary School";
+	}
+
+window.onload = function () {
+    var chart = new CanvasJS.Chart("deviceC",
+    {
+      title:{
+        text: chartTitle
+      },
+
+      axisX:{
+        //title: "time",
+        //gridThickness: 2,
+        interval:1, 
+        intervalType: "hour",        
+        valueFormatString: "hh TT", 
+        //labelAngle: -20
+      },
+      axisY:{
+        title: "Hourly Air Quality Index"
+      },
+      data: [
+      {        
+        type: "line",
+        dataPoints: dataPointsArray //Array I made
+      }
+      ]
+    });
+
+chart.render();
+}
+  </script>
+</head>
+<body>
+<p id="deviceC" style="height: 300px; width: 100%;"></p>
+</body>
+</html>
