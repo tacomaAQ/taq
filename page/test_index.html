@@ -52,6 +52,7 @@ To begin, click on a pin to see the most recent* air quality data from the senso
         <p><a href="https://urban.microsoft.com/air/data/Tacoma/2217">Center For Urban Waters</a></p>
 
         <p><a href="https://urban.microsoft.com/air/data/Tacoma/2189">Crescent Heights Elementary School</a></p>
+        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
         <p><a href="https://urban.microsoft.com/air/data/Tacoma/2190">Stafford Elementary School</a></p>
 
@@ -83,6 +84,8 @@ To begin, click on a pin to see the most recent* air quality data from the senso
 
     <script src="../leaflet/leaflet.js"></script>
     <script src="../src/L.Control.Sidebar.js"></script> 
+    <script src="../canvas/canvasjs.min.js"></script>
+    <script src="../src/Graph.js"></script>
 
     <script>
         var map = L.map('map');
@@ -275,7 +278,7 @@ To begin, click on a pin to see the most recent* air quality data from the senso
             AQI8 = obj8[0].aqi;
         }
         
-        var marker = L.marker([47.6119653,-122.34192]).addTo(map);
+        var marker = L.marker([47.265572,-122.385049]).addTo(map);
         marker.bindPopup("PSCAA Alexander Avenue Current AQI: " + AQI8);
         marker.on('click', function () {//PSCAA Alexander Avenue
             sidebar.show();
